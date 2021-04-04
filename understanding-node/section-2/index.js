@@ -50,6 +50,18 @@ const server = http.createServer((req, res) => {
     
     if (pathName === '/' || pathName === '/overview') return res.end('Welcome to overview!');
     if (pathName === '/product') return res.end('Welcome to product!');
+    //ASYNC READING EVERY TIME WE DO REQUEST
+    if (pathName === '/api') {
+        return (
+            fs.readFile(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
+                if (err) return console.error(err);
+                res.writeHead(200, {
+                    'Content-type': 'application/json'
+                });
+                return res.end(data);
+            })
+        );
+    }
     res.writeHead(404, {
         'Content-type': 'text/html'
     });
