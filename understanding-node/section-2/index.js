@@ -45,22 +45,31 @@ const http = require('http');
 ////////////////////////////
 // SERVER
 
+//Only runs once when the program is compiled. We can reuse the data now without reading it.
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
+const dataObj = JSON.parse(data);
+
 const server = http.createServer((req, res) => {
     const pathName = req.url
     
     if (pathName === '/' || pathName === '/overview') return res.end('Welcome to overview!');
     if (pathName === '/product') return res.end('Welcome to product!');
-    //ASYNC READING EVERY TIME WE DO REQUEST
     if (pathName === '/api') {
-        return (
-            fs.readFile(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
-                if (err) return console.error(err);
-                res.writeHead(200, {
-                    'Content-type': 'application/json'
-                });
-                return res.end(data);
-            })
-        );
+        //Async reading everytime we request
+        // return (
+        //     fs.readFile(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
+        //         if (err) return console.error(err);
+        //         res.writeHead(200, {
+        //             'Content-type': 'application/json'
+        //         });
+        //         return res.end(data);
+        //     })
+        // );
+        //Sync sending data on request
+        res.writeHead(200, {
+            'Content-type': 'application/json'
+        });
+        return res.end(data);
     }
     res.writeHead(404, {
         'Content-type': 'text/html'
