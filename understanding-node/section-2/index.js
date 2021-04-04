@@ -1,6 +1,6 @@
 const fs = require('fs');
 const http = require('http');
-// const url = require('url');
+const { URL } = require('url');
 
 ////////////////////////////
 // FILES
@@ -69,9 +69,12 @@ const replaceTemplate = (card, template) => {
 }
 
 const server = http.createServer((req, res) => {
-    const pathName = req.url
+
+    const { pathname, searchParams } = new URL(req.url, 'http://localhost:8000/');
+    const query = Object.fromEntries(searchParams);
     
-    if (pathName === '/' || pathName === '/overview') {
+    //OVERVIEW PAGE
+    if (pathname === '/' || pathname === '/overview') {
         res.writeHead(200, {
             'Content-type': 'text/html'
         });
@@ -79,8 +82,19 @@ const server = http.createServer((req, res) => {
         const output = templateOverview.replace('{%PRODUCT_CARDS%}', cardsHtml);
         return res.end(output);
     }
-    if (pathName === '/product') return res.end('Welcome to product!');
-    if (pathName === '/api') {
+    //PRODUCT PAGE
+    if (pathname === '/product') {
+
+        const product = dataObj[query.id];
+        const output = replaceTemplate(product, templateProduct);
+
+        res.writeHead(200, {
+            'Content-type': 'text/html'
+        })
+        return res.end(output);
+    }
+    //API PAGE
+    if (pathname === '/api') {
         //Async reading everytime we request
         // return (
         //     fs.readFile(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
@@ -97,6 +111,7 @@ const server = http.createServer((req, res) => {
         });
         return res.end(data);
     }
+    //ERROR PAGE
     res.writeHead(404, {
         'Content-type': 'text/html'
     });
