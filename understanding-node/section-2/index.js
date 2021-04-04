@@ -1,5 +1,6 @@
 const fs = require('fs');
 const http = require('http');
+// const url = require('url');
 
 ////////////////////////////
 // FILES
@@ -45,7 +46,14 @@ const http = require('http');
 // SERVER
 
 const server = http.createServer((req, res) => {
-    res.end('Server created!');
+    const pathName = req.url
+    
+    if (pathName === '/' || pathName === '/overview') return res.end('Welcome to overview!');
+    if (pathName === '/product') return res.end('Welcome to product!');
+    res.writeHead(404, {
+        'Content-type': 'text/html'
+    });
+    res.end('<h1>Page not found!</h1>');
 });
 
 server.listen(8000, '127.0.0.1', () => {
