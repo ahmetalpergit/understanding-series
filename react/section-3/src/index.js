@@ -50,7 +50,7 @@ function BookList() {
 
 const Book = () => {
   return (
-    <article className="book">
+    <article className="book" style={{padding: "1rem", backgroundColor: "#fff", borderRadius: "10px"}}>
       <Image />
       <Title />
       <Author />
