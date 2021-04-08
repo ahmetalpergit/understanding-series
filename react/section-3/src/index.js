@@ -32,16 +32,28 @@ import ReactDom from 'react-dom';
 //////////////////////////
 // Nested Components
 
-function Greeting() {
+function BookList() {
   return (
-    <div>
-      <Person />
-      <Message />
-    </div>
+    <section>
+      <Book />
+      <Book />
+      <Book />
+      <Book />
+    </section>
   )
 }
 
-const Person = () => <h1>John Doe</h1>
-const Message = () => <p>This is my message.</p>
+const Book = () => {
+  return (
+    <article>
+      <Image />
+      <Title />
+      <Author />
+    </article>
+  )
+}
+const Image = () => <img src="https://images-na.ssl-images-amazon.com/images/I/41JIh4KMHRL._AC_SX184_.jpg" alt=""/>
+const Title = () => <h1>The 48 Laws of Power</h1>
+const Author = () => <p>Robert Greene</p>
 
-ReactDom.render(<Greeting />, document.getElementById('root'));
+ReactDom.render(<BookList />, document.getElementById('root'));
