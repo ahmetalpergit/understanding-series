@@ -43,22 +43,22 @@ function BookList() {
       <Book />
       <Book />
       <Book />
-      <Book />
     </section>
   )
 }
 
 const Book = () => {
+  const title = 'The 48 Laws of Power';
+  const author = 'harry potter';
+  
   return (
     <article className="book" style={{padding: "1rem", backgroundColor: "#fff", borderRadius: "10px"}}>
-      <Image />
-      <Title />
-      <Author />
+      <img src="https://images-na.ssl-images-amazon.com/images/I/41JIh4KMHRL._AC_SX184_.jpg" alt=""/>
+      <h1>{title}</h1>
+      <p>{author.toUpperCase()}</p>
+      <p>{6 + 6}</p>
     </article>
   )
 }
-const Image = () => <img src="https://images-na.ssl-images-amazon.com/images/I/41JIh4KMHRL._AC_SX184_.jpg" alt=""/>
-const Title = () => <h1>The 48 Laws of Power</h1>
-const Author = () => <p>Robert Greene</p>
 
 ReactDom.render(<BookList />, document.getElementById('root'));
