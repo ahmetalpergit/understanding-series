@@ -100,16 +100,16 @@ import './index.css';
 /////////////////////////////////
 // PROPS children
 
-function BookList() {
-  return (
-    <section className="booklist">
-      <Book title="Whatever" author="Someone" img="https://images-na.ssl-images-amazon.com/images/I/51BlTo5rKoL._AC_SX184_.jpg">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum quidem iusto ullam asperiores sequi vel, cum, sapiente laboriosam, libero deleniti iure reiciendis pariatur iste nisi. Excepturi labore sit temporibus culpa?</p>
-      </Book>
-      <Book title='The 48 Laws of Power' author = 'harry potter' img = 'https://images-na.ssl-images-amazon.com/images/I/51ucj27xFCL._AC_SX184_.jpg'/>
-    </section>
-  )
-}
+// function BookList() {
+//   return (
+//     <section className="booklist">
+//       <Book title="Whatever" author="Someone" img="https://images-na.ssl-images-amazon.com/images/I/51BlTo5rKoL._AC_SX184_.jpg">
+//         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum quidem iusto ullam asperiores sequi vel, cum, sapiente laboriosam, libero deleniti iure reiciendis pariatur iste nisi. Excepturi labore sit temporibus culpa?</p>
+//       </Book>
+//       <Book title='The 48 Laws of Power' author = 'harry potter' img = 'https://images-na.ssl-images-amazon.com/images/I/51ucj27xFCL._AC_SX184_.jpg'/>
+//     </section>
+//   )
+// }
 
 const Book = ({
   title,
@@ -125,6 +125,37 @@ const Book = ({
       <p>{author}</p>
       {children}
     </article>
+  )
+}
+
+function BookList() {
+  const books = [
+    {
+      id: 1,
+      title: 'Whatever',
+      author: 'Someone',
+      img: 'https://images-na.ssl-images-amazon.com/images/I/51BlTo5rKoL._AC_SX184_.jpg'
+    },
+    {
+      id: 2,
+      title: 'The 48 Laws of Power',
+      author: 'harry potter',
+      img: 'https://images-na.ssl-images-amazon.com/images/I/51ucj27xFCL._AC_SX184_.jpg'
+    }
+  ];
+
+  // const names = ['john', 'doe', 'jane'];
+  
+  // const newNames = names.map(name => <h1>name</h1>)
+
+  return (
+    <section className="booklist">
+      {books.map(book => {
+        return (
+          <Book key={book.id} {...book} />
+        )
+      })}
+    </section>
   )
 }
 
