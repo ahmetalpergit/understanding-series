@@ -118,12 +118,24 @@ const Book = ({
   children //special name that denotes children, always.
 }) => {
 
+  const clickHandler = () => {
+    console.log('reference works')
+  }
+
+  const handlerWithEvent = (e) => {
+    console.log(e);
+    console.log(e.target);
+  }
+
   return (
     <article className="book" style={{padding: "1rem", backgroundColor: "#fff", borderRadius: "10px"}}>
       <img src={img} alt=""/>
       <h1>{title}</h1>
       <p>{author}</p>
       {children}
+      <button onClick={handlerWithEvent}>reference with event</button>
+      <button onClick={clickHandler}>reference</button>
+      <button onClick={() => console.log('inline works')}>inline</button>
     </article>
   )
 }
