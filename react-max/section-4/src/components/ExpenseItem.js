@@ -1,18 +1,25 @@
 import Card from './Card';
+import React, { useState } from 'react';
 import ExpenseDate from './ExpenseDate';
 import './ExpenseItem.css';
 
-function ExpenseItem({
-    title, amount, date
-}) {
+function ExpenseItem({ title, amount, date }) {
+
+    const [newTitle, setTitle] = useState(title)
+
+    const clickHandler = () => {
+        setTitle('New Title');
+    }
+
 
     return (
         <Card className="expense-item">
             <ExpenseDate date={date} />
             <div className="expense-item__description">
-                <h2>{title}</h2>
+                <h2>{newTitle}</h2>
                 <div className="expense-item__price">${amount}</div>
             </div>
+            <button onClick={clickHandler}>Change Title</button>
         </Card>
     );
 }

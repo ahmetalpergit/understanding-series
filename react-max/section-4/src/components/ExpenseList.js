@@ -2,9 +2,7 @@ import Card from './Card';
 import ExpenseItem from "./ExpenseItem";
 import './ExpenseList.css';
 
-function ExpenseList({
-    expenses
-}) {
+function ExpenseList({ expenses }) {
     return (
         <Card className="expenses">
             {expenses.map(exp => <ExpenseItem key={exp.id} {...exp} />)}

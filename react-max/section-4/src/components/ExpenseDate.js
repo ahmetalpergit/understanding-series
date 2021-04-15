@@ -1,8 +1,6 @@
 import './ExpenseDate.css';
 
-function ExpenseDate({
-    date
-}) {
+function ExpenseDate({ date }) {
 
     const longDate = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric', day: '2-digit' }).replace(',', '');
     const [month, day, year] = longDate.split(' ');
