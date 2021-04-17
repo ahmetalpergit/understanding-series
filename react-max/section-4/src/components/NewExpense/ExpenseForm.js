@@ -4,24 +4,54 @@ import './ExpenseForm.css';
 
 function ExpenseForm() {
 
-    const [currentTitle, setCurrentTitle] = useState('');
-    const [currentAmount, setCurrentAmount] = useState('');
-    const [currentDate, setCurrentDate] = useState('');
+    //const [currentTitle, setCurrentTitle] = useState('');
+    //const [currentAmount, setCurrentAmount] = useState('');
+    //const [currentDate, setCurrentDate] = useState('');
+    const [userInput, setUserInput] = useState({
+        currentTitle: '',
+        currentAmount: '',
+        currentDate: ''
+    });
+
 
     const titleChangeHandler = (e) => {
-        setCurrentTitle(e.target.value);
+        //setCurrentTitle(e.target.value);
+        //setUserInput({
+        //    ...userInput,
+        //    currentTitle: e.target.value
+        //});
+
+        setUserInput(prev => {
+            return {
+                ...userInput,
+                currentTitle: e.target.value
+            };
+        });
     };
 
     const amountChangeHandler = (e) => {
-        setCurrentAmount(e.target.value);
+        //setCurrentAmount(e.target.value);
+        setUserInput({
+            ...userInput,
+            currentAmount: e.target.value
+        });
     };
 
     const dateChangeHandler = (e) => {
-        setCurrentDate(e.target.value);
+        //setCurrentDate(e.target.value);
+        setUserInput({
+            ...userInput,
+            currentDate: e.target.value
+        });
+    };
+
+    const logDataHandler = (e) => {
+        e.preventDefault();
+        console.log(userInput);
     };
 
     return (
-        <form>
+        <form onSubmit={logDataHandler}>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label htmlFor="">Title</label>
