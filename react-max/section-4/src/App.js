@@ -31,9 +31,9 @@ function App() {
   ];
 
   const addNewExpenseHandler = (expense) => {
-    console.log(expense);
-    console.log(expenses);
-    console.log('app.js');
+    //console.log(expense);
+    //console.log(expenses);
+    //console.log('app.js');
   };
 
   return (
