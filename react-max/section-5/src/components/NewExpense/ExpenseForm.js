@@ -25,7 +25,7 @@ function ExpenseForm({ onSaveExpense, onCancel }) {
 
         const expenseData = {
             title: currentTitle,
-            amount: currentAmount,
+            amount: +currentAmount,
             date: new Date(currentDate),
         };
 
