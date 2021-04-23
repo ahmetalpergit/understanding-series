@@ -16,8 +16,8 @@ function App() {
     setUsers(prev => [...prev, newUser]);
   };
 
-  const showModalHandle = () => {
-    setModalMessage('error');
+  const showModalHandle = (errMessage) => {
+    setModalMessage(errMessage);
     setShowModal(true);
   };
 

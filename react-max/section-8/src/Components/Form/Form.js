@@ -9,7 +9,8 @@ const Form = ({ getUserData, onInvalidInput }) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        if (user.name === '' || user.age === '') return onInvalidInput();
+        //error handle if input checks out
+        if (!checkValidInput(user)) return;
         getUserData(user);
         setUser({ name: '', age: '' });
     };
@@ -25,6 +26,24 @@ const Form = ({ getUserData, onInvalidInput }) => {
             return { ...prev, age: e.target.value };
         });
     };
+
+    function checkValidInput(user) {
+        //check for empty inputs
+        if (user.name === '' && user.age === '') {
+            onInvalidInput('Please enter a username and age');
+            return false;
+        }
+        //check for age only
+        if (user.age === '' || +user.age < 0) {
+            onInvalidInput('Please enter a valid age');
+            return false;
+        }
+        //check for name only
+        if (user.name === '' || user.name.trim().length === 0) {
+            onInvalidInput('Please enter a valid name');
+        }
+        return true;
+    }
 
     return (
         <form className={styles.form} onSubmit={submitHandler}>
