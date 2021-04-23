@@ -1,0 +1,9 @@
+.user {
+  border: 1px solid gray;
+  padding: 5px 10px;
+  margin: 5px 0;
+}
+
+.user h3 {
+  margin: 0;
+}
