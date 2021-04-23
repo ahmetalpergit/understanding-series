@@ -3,12 +3,13 @@ import Button from './Button';
 import styles from './Form.module.css';
 
 
-const Form = ({ getUserData }) => {
+const Form = ({ getUserData, onInvalidInput }) => {
 
     const [user, setUser] = useState({ name: '', age: '' });
 
     const submitHandler = (e) => {
         e.preventDefault();
+        if (user.name === '' || user.age === '') return onInvalidInput();
         getUserData(user);
         setUser({ name: '', age: '' });
     };
