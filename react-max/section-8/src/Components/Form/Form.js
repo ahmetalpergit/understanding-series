@@ -39,8 +39,9 @@ const Form = ({ getUserData, onInvalidInput }) => {
             return false;
         }
         //check for name only
-        if (user.name === '' || user.name.trim().length === 0) {
+        if (user.name === '' || user.name.trim().length === 0 || !isNaN(user.name)) {
             onInvalidInput('Please enter a valid name');
+            return false;
         }
         return true;
     }

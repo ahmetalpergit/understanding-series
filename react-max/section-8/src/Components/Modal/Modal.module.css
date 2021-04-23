@@ -5,4 +5,27 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.modal__top {
+  background-color: rgb(100, 22, 75);
+  color: white;
+  padding: 0 15px;
+}
+
+.modal__bot {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__message {
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .modal__bot {
+    align-items: flex-end;
+  }
 }
