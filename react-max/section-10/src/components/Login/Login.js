@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -51,17 +51,19 @@ const Login = (props) => {
 
   const [state, dispatcher] = useReducer(emailReducer, initialState);
 
-  //useEffect(() => {
-  //  const identifier = setTimeout(() => {
-  //    console.log('checking validity');
+  const { emailIsValid } = state;
+  const { passwordIsValid } = state;
 
-  //  }, 500);
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      console.log('checking validity');
+    }, 500);
 
-  //  return () => {
-  //    console.log('cleaning');
-  //    clearTimeout(identifier);
-  //  };
-  //}, [enteredEmail, enteredPassword]);
+    return () => {
+      console.log('cleaning');
+      clearTimeout(identifier);
+    };
+  }, [emailIsValid, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
     dispatcher({ type: 'INPUT_EMAIL', value: event.currentTarget.value });
