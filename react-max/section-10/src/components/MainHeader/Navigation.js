@@ -10,17 +10,17 @@ const Navigation = (props) => {
   return (
     <nav className={classes.nav}>
       <ul>
-        {context.loginValidation && (
+        {context.isLoggedIn && (
           <li>
             <a href="/">Users</a>
           </li>
         )}
-        {context.loginValidation && (
+        {context.isLoggedIn && (
           <li>
             <a href="/">Admin</a>
           </li>
         )}
-        {context.loginValidation && (
+        {context.isLoggedIn && (
           <li>
             <button onClick={context.onLogout}>Logout</button>
           </li>
