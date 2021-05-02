@@ -28,8 +28,8 @@ function App() {
   };
 
   return (
-    <ContextAuth.Provider value={{ loginValidation: isLoggedIn }}>
-      <MainHeader onLogout={logoutHandler} />
+    <ContextAuth.Provider value={{ loginValidation: isLoggedIn, onLogout: logoutHandler }}>
+      <MainHeader />
       <main>
         {!isLoggedIn && <Login onLogin={loginHandler} />}
         {isLoggedIn && <Home onLogout={logoutHandler} />}

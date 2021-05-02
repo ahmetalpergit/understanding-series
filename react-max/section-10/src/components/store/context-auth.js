@@ -1,7 +1,5 @@
 import React from 'react';
 
-const ContextAuth = React.createContext({
-    loginValidation: false
-});
+const ContextAuth = React.createContext();
 
 export default ContextAuth;
