@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useRef, useImperativeHandle } from 'react';
 import classes from '../../Login/Login.module.css';
 
-const Input = ({ type, id, value, onChange, onBlur, label, isValid }) => {
+const Input = React.forwardRef(({ type, id, value, onChange, onBlur, label, isValid }, ref) => {
+
+    const inputRef = useRef();
+
+    const activate = () => {
+        inputRef.current.focus();
+    };
+
+    useImperativeHandle(
+        ref,
+        () => {
+            return {
+                focus: activate
+            };
+        }
+    );
+
     return (
         <div className={`${classes.control} ${isValid === false ? classes.invalid : ''}`}>
             <label htmlFor={type}>{label}</label>
             <input
+                ref={inputRef}
                 type={type}
                 id={id}
                 value={value}
@@ -14,6 +31,6 @@ const Input = ({ type, id, value, onChange, onBlur, label, isValid }) => {
             />
         </div>
     );
-};
+});
 
 export default Input;

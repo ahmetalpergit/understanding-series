@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useContext } from 'react';
+import React, { useReducer, useEffect, useContext, useRef } from 'react';
 
 import Card from '../UI/Card/Card';
 import ContextAuth from '../store/context-auth';
@@ -55,6 +55,9 @@ const Login = (props) => {
 
   const context = useContext(ContextAuth);
 
+  const refInputEmail = useRef();
+  const refInputPassword = useRef();
+
   const { emailIsValid } = state;
   const { passwordIsValid } = state;
 
@@ -91,13 +94,16 @@ const Login = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    context.onLogin(state.enteredEmail, state.enteredPassword);
+    if (state.formIsValid) context.onLogin(state.enteredEmail, state.enteredPassword);
+    else if (!emailIsValid) refInputEmail.current.focus();
+    else refInputPassword.current.focus();
   };
 
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
         <Input
+          ref={refInputEmail}
           label="E-mail"
           type="email"
           id="email"
@@ -109,6 +115,7 @@ const Login = (props) => {
           E-mail
         </Input>
         <Input
+          ref={refInputPassword}
           label="Password"
           type="password"
           id="password"
@@ -118,7 +125,7 @@ const Login = (props) => {
           isValid={state.passwordIsValid}
         />
         <div className={classes.actions}>
-          <Button type="submit" className={classes.btn} disabled={!state.formIsValid}>
+          <Button type="submit" className={classes.btn}>
             Login
           </Button>
         </div>
