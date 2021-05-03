@@ -4,6 +4,7 @@ import Card from '../UI/Card/Card';
 import ContextAuth from '../store/context-auth';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
+import Input from '../UI/Input/Input';
 
 const emailReducer = (state, action) => {
   if (action.type === 'INPUT_PASSWORD') {
@@ -96,32 +97,26 @@ const Login = (props) => {
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
-        <div
-          className={`${classes.control} ${state.emailIsValid === false ? classes.invalid : ''
-            }`}
+        <Input
+          label="E-mail"
+          type="email"
+          id="email"
+          value={state.enteredEmail}
+          onChange={emailChangeHandler}
+          onBlur={validateEmailHandler}
+          isValid={state.emailIsValid === false ? classes.invalid : ''}
         >
-          <label htmlFor="email">E-Mail</label>
-          <input
-            type="email"
-            id="email"
-            value={state.enteredEmail}
-            onChange={emailChangeHandler}
-            onBlur={validateEmailHandler}
-          />
-        </div>
-        <div
-          className={`${classes.control} ${state.passwordIsValid === false ? classes.invalid : ''
-            }`}
-        >
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={state.enteredPassword}
-            onChange={passwordChangeHandler}
-            onBlur={validatePasswordHandler}
-          />
-        </div>
+          E-mail
+        </Input>
+        <Input
+          label="Password"
+          type="password"
+          id="password"
+          value={state.enteredPassword}
+          onChange={passwordChangeHandler}
+          onBlur={validatePasswordHandler}
+          isValid={state.passwordIsValid === false ? classes.invalid : ''}
+        />
         <div className={classes.actions}>
           <Button type="submit" className={classes.btn} disabled={!state.formIsValid}>
             Login
