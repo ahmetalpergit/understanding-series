@@ -104,7 +104,7 @@ const Login = (props) => {
           value={state.enteredEmail}
           onChange={emailChangeHandler}
           onBlur={validateEmailHandler}
-          isValid={state.emailIsValid === false ? classes.invalid : ''}
+          isValid={state.emailIsValid}
         >
           E-mail
         </Input>
@@ -115,7 +115,7 @@ const Login = (props) => {
           value={state.enteredPassword}
           onChange={passwordChangeHandler}
           onBlur={validatePasswordHandler}
-          isValid={state.passwordIsValid === false ? classes.invalid : ''}
+          isValid={state.passwordIsValid}
         />
         <div className={classes.actions}>
           <Button type="submit" className={classes.btn} disabled={!state.formIsValid}>
