@@ -7,13 +7,13 @@ const defaultCartState = {
 };
 
 const cartReducer = (state, action) => {
-    if (action === 'ADD') {
+    if (action.type === 'ADD') {
         return {
             items: [...state.items, action.value],
             totalAmount: state.totalAmount + +action.value.price * +action.value.amount
         };
     }
-    if (action === 'REMOVE') {
+    if (action.type === 'REMOVE') {
         const filteredItems = state.items.filter(item => item.id !== action.value);
         return {
             items: filteredItems,
