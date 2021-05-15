@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import CartContext from '../../store/context-cart';
 import classes from './CartItem.module.css';
 
 const CartItem = ({ id, name, price, amount }) => {
+    const ctxCart = useContext(CartContext);
     return (
         <li className={classes['cart-item']}>
             <div>
@@ -12,8 +14,8 @@ const CartItem = ({ id, name, price, amount }) => {
                 </div>
             </div>
             <div>
-                <button>-</button>
-                <button>+</button>
+                <button onClick={ctxCart.updateItem.bind(null, id, -1)}>-</button>
+                <button onClick={ctxCart.updateItem.bind(null, id, 1)}>+</button>
             </div>
         </li>
     );
