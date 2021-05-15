@@ -21,7 +21,7 @@ const MealItem = ({ id, name, description, price }) => {
             <div>
                 <h3>{name}</h3>
                 <div className={classes.description}>{description}</div>
-                <div className={classes.price}>{price}</div>
+                <div className={classes.price}>${price.toFixed(2)}</div>
             </div>
             <MealItemForm id={id} onAddItem={addItemHandler} />
         </li>

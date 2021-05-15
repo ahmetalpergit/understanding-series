@@ -17,6 +17,7 @@ const MealItemForm = ({ id, onAddItem }) => {
             return setAmountIsValid(false);
         }
         onAddItem(+inputAmount);
+        inputAmountRef.current.value = '1';
         return setAmountIsValid(true);
     };
 

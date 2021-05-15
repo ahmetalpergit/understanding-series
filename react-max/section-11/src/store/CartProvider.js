@@ -13,6 +13,21 @@ const cartReducer = (state, action) => {
             totalAmount: state.totalAmount + +action.value.price * +action.value.amount
         };
     }
+    if (action.type === 'UPDATE') {
+        const updatedItems = state.items.map((item) => {
+            if (item.id === action.value.id) {
+                return {
+                    ...item,
+                    amount: item.amount + action.value.amount,
+                };
+            }
+            return item;
+        });
+        return {
+            items: updatedItems,
+            totalAmount: state.totalAmount + +action.value.price * +action.value.amount
+        };
+    }
     if (action.type === 'REMOVE') {
         const filteredItems = state.items.filter(item => item.id !== action.value);
         return {
@@ -28,6 +43,7 @@ const CartProvider = ({ children }) => {
     const [cartState, cartDispatch] = useReducer(cartReducer, defaultCartState);
 
     const addItemToCartHandler = (item) => {
+        if (cartState.items.some(el => el.id === item.id)) return cartDispatch({ type: 'UPDATE', value: item });
         cartDispatch({ type: 'ADD', value: item });
     };
     const removeItemFromCartHandler = (id) => {
