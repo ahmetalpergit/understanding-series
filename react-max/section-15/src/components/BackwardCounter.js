@@ -1,9 +1,8 @@
-import useCounter from '../hooks/useCounter';
+import { useCounter } from '../hooks/useCounter';
 import Card from './Card';
 
 const BackwardCounter = () => {
-
-  const counter = useCounter();
+  const counter = useCounter(false);
 
   return <Card>{counter}</Card>;
 };
