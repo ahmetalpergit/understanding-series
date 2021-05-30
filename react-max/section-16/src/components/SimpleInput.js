@@ -1,25 +1,20 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 
 const SimpleInput = (props) => {
 
-  const nameInputRef = useRef();
   const [input, setInput] = useState('');
-  const [inputIsValid, setInputIsValid] = useState(false);
   const [inputIsTouched, setInputIsTouched] = useState(false);
 
-  useEffect(() => {
-    if (inputIsValid) console.log('valid input');
-  }, [inputIsValid]);
+  const inputIsValid = input.trim() !== '';
+  const inputHasFailedValidation = !inputIsValid && inputIsTouched;
 
   const submitFormHandler = (e) => {
     e.preventDefault();
 
-    setInputIsTouched(true);
-    if (input.trim() === '') return setInputIsValid(false);
-
-    setInputIsValid(true);
-    setInput('');
-    //nameInputRef.current.value = ''; //Not IDEAL - DO NOT manipulate DOM directly
+    if (inputIsValid && inputIsTouched) {
+      setInput('');
+      setInputIsTouched(false);
+    }
   };
 
   const inputChangeHandler = (e) => {
@@ -28,15 +23,14 @@ const SimpleInput = (props) => {
 
   const inputBlurHandler = (e) => {
     setInputIsTouched(true);
-    if (input.trim() === '') return setInputIsValid(false);
   };
 
   return (
     <form onSubmit={submitFormHandler}>
-      <div className={`form-control ${!inputIsValid && inputIsTouched ? 'invalid' : ''}`}>
+      <div className={`form-control ${inputHasFailedValidation ? 'invalid' : ''}`}>
         <label htmlFor='name'>Your Name</label>
-        <input type='text' id='name' onChange={inputChangeHandler} onBlur={inputBlurHandler} value={input} ref={nameInputRef} />
-        {!inputIsValid && inputIsTouched && <p className="error-text">Name must not be empty.</p>}
+        <input type='text' id='name' onChange={inputChangeHandler} onBlur={inputBlurHandler} value={input} />
+        {inputHasFailedValidation && <p className="error-text">Name must not be empty.</p>}
       </div>
       <div className="form-actions">
         <button>Submit</button>
