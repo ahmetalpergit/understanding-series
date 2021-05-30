@@ -8,6 +8,9 @@ const SimpleInput = (props) => {
   const inputIsValid = input.trim() !== '';
   const inputHasFailedValidation = !inputIsValid && inputIsTouched;
 
+  let formIsValid = false;
+  if (inputIsValid) formIsValid = true;
+
   const submitFormHandler = (e) => {
     e.preventDefault();
 
@@ -33,7 +36,7 @@ const SimpleInput = (props) => {
         {inputHasFailedValidation && <p className="error-text">Name must not be empty.</p>}
       </div>
       <div className="form-actions">
-        <button>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
