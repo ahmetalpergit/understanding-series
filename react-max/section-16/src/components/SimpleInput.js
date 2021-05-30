@@ -26,11 +26,16 @@ const SimpleInput = (props) => {
     setInput(e.target.value);
   };
 
+  const inputBlurHandler = (e) => {
+    setInputIsTouched(true);
+    if (input.trim() === '') return setInputIsValid(false);
+  };
+
   return (
     <form onSubmit={submitFormHandler}>
       <div className={`form-control ${!inputIsValid && inputIsTouched ? 'invalid' : ''}`}>
         <label htmlFor='name'>Your Name</label>
-        <input type='text' id='name' onChange={inputChangeHandler} value={input} ref={nameInputRef} />
+        <input type='text' id='name' onChange={inputChangeHandler} onBlur={inputBlurHandler} value={input} ref={nameInputRef} />
         {!inputIsValid && inputIsTouched && <p className="error-text">Name must not be empty.</p>}
       </div>
       <div className="form-actions">
