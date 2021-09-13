@@ -9,3 +9,7 @@ var person = {
     age: 30
 };
 console.log(person);
+var nestedPerson = {
+    info: { name: "Ahmet", surname: "Alper", age: 31 }
+};
+console.log(nestedPerson);

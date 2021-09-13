@@ -13,3 +13,9 @@ const person = {
 };
 
 console.log(person);
+
+const nestedPerson = {
+  info: { name: "Ahmet", surname: "Alper", age: 31 },
+};
+
+console.log(nestedPerson);
