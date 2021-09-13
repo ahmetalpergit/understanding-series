@@ -1,12 +1,16 @@
-//any[] allows any sort of data inside an array
+function combine(input1: number | string, input2: number | string) {
+    let result;
 
-let favoriteActivities: any[];
-favoriteActivities = ['Sports', 5];
+    if (typeof input1 === 'number' && typeof input2 === 'number') {
+        result = input1 + input2;
+    } else {
+        result = input1.toString() + input2.toString();
+    }
+    return result;
+}
 
-//it checks for array though
+const combineAges = combine(5, 10);
+const combineNames = combine('Max', 'Anna');
 
-let anyCheckArray: any[];
-//anyCheckArray = 5;
-
-let someValue: any = 5;
-let someOtherValue: any = 'here I am';
+console.log(combineAges);
+console.log(combineNames);
