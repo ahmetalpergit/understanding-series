@@ -5,14 +5,19 @@
 //};
 //Good Example
 var person = {
-    name: "Maximilian",
+    name: 'Maximilian',
     age: 30,
-    hobbies: ["Sports", "Cooking"]
+    hobbies: ['Sports', 'Cooking'],
+    role: [2, 'author']
 };
+//TS cannot catch pushing for tuples - be careful!
+//person.role.push(5);
+//TS catches these
+//person.role[1] = 5;
+//person.role[2] = 10;
 var favoriteActivities;
-favoriteActivities = ["Sports"];
-console.log(person.name);
-for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
-    var hobby = _a[_i];
-    console.log(hobby.toUpperCase());
-}
+favoriteActivities = ['Sports'];
+//console.log(person.name);
+//for (const hobby of person.hobbies) {
+//    console.log(hobby.toUpperCase());
+//}
