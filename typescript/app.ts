@@ -10,12 +10,14 @@
 const person = {
   name: "Maximilian",
   age: 30,
+  hobbies: ["Sports", "Cooking"],
 };
 
-console.log(person);
+let favoriteActivities: string[];
+favoriteActivities = ["Sports"];
 
-const nestedPerson = {
-  info: { name: "Ahmet", surname: "Alper", age: 31 },
-};
+console.log(person.name);
 
-console.log(nestedPerson);
+for (const hobby of person.hobbies) {
+  console.log(hobby.toUpperCase());
+}
