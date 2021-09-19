@@ -1,10 +1,10 @@
-type combinedTypes = number | string;
-type conversionType = 'as-number' | 'as-text';
+type CombinedTypes = number | string;
+type ConversionType = 'as-number' | 'as-text';
 
 function combine(
-    input1: combinedTypes,
+    input1: CombinedTypes,
     input2: number | string,
-    resultConversion: conversionType
+    resultConversion: ConversionType
 ) {
     let result;
 
