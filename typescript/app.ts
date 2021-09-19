@@ -1,25 +1,16 @@
-function add(n1: number, n2: number) {
-    return n1 + n2;
+let userInput: unknown;
+let userName: string;
+
+userInput = 5;
+userInput = 'Max';
+
+//Creates an error because unknown type can't be assigned to other types.
+//userName = userInput
+
+//Can be assigned after a manual type check
+if (typeof userInput === 'string') {
+    userName = userInput;
 }
 
-//void return type - doesn't return anything
-function printResult(num: number): void {
-    console.log('The result is: ' + num);
-}
-
-function addAndHandle(
-    num1: number,
-    num2: number,
-    cb: (result: number) => void
-) {
-    const result = num1 + num2;
-    cb(result);
-}
-
-//works because printResult satisfies the cb function type
-addAndHandle(10, 20, printResult);
-
-//works because we define the function for cb and it passes the requirements
-addAndHandle(20, 30, (result: number) => {
-    console.log(result);
-});
+//Unknown is still better than any since it provides SOME type checking
+//You should still try to define the types as much as you can and avoid using it
