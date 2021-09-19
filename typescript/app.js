@@ -5,10 +5,13 @@ function add(n1, n2) {
 function printResult(num) {
     console.log('The result is: ' + num);
 }
-// 1- perfectly fine pointer function
-var combineValues = add;
-console.log(combineValues(5, 10));
-// 2- This is how we define a function type (param names don't matter)
-var combineValues2 = add;
-// 3- Throws error because the function we're pointing doesn't satisfy our function type
-//let combineValues3: (a: number, b: number) => number = printResult;
+function addAndHandle(num1, num2, cb) {
+    var result = num1 + num2;
+    cb(result);
+}
+//works because printResult satisfies the cb function type
+addAndHandle(10, 20, printResult);
+//works because we define the function for cb and it passes the requirements
+addAndHandle(20, 30, function (result) {
+    console.log(result);
+});

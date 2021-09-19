@@ -7,12 +7,19 @@ function printResult(num: number): void {
     console.log('The result is: ' + num);
 }
 
-// 1- perfectly fine pointer function
-let combineValues = add;
-console.log(combineValues(5, 10));
+function addAndHandle(
+    num1: number,
+    num2: number,
+    cb: (result: number) => void
+) {
+    const result = num1 + num2;
+    cb(result);
+}
 
-// 2- This is how we define a function type (param names don't matter)
-let combineValues2: (a: number, b: number) => number = add;
+//works because printResult satisfies the cb function type
+addAndHandle(10, 20, printResult);
 
-// 3- Throws error because the function we're pointing doesn't satisfy our function type
-//let combineValues3: (a: number, b: number) => number = printResult;
+//works because we define the function for cb and it passes the requirements
+addAndHandle(20, 30, (result: number) => {
+    console.log(result);
+});
