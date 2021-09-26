@@ -1,13 +1,9 @@
 class Department {
-    //private name: string;
-    //private id: string;
-
-    //shorthand to create class with variables right away
-    constructor(private id: string, private name: string) {
-        //this.name = n;
-    }
+    constructor(private readonly id: string, private name: string) {}
 
     describe(this: Department) {
+        //not allowed because id is read-only
+        //this.id = 'd2'
         console.log(`Department: ${this.id}: ${this.name}`);
     }
 }
