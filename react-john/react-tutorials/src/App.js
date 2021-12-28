@@ -1,10 +1,10 @@
-import ShortCircuts from '../src/tutorial/3-conditional-rendering/setup/2-short-circuit';
+import ShowHide from '../src/tutorial/3-conditional-rendering/setup/3-show-hide';
 
 import React from 'react';
 function App() {
   return (
     <div className='container'>
-      <ShortCircuts />
+      <ShowHide />
     </div>
   );
 }
