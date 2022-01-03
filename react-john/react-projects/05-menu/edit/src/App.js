@@ -5,7 +5,6 @@ import items from './data';
 
 function App() {
   const [data, setData] = useState(items);
-
   const handleCategoryClick = (e) => {
     const categoryText = e.target.innerText.toLowerCase();
     if (categoryText === 'all') {
@@ -21,7 +20,7 @@ function App() {
         <h2>our menu</h2>
         <div className="underline"></div>
       </div>
-      <Categories handler={handleCategoryClick} />
+      <Categories data={items} handler={handleCategoryClick} />
       <div className="section-center">
         {data.map(item => <Menu key={item.id} {...item} />)}
       </div>

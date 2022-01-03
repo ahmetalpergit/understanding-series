@@ -1,11 +1,10 @@
 import React from 'react';
 
-const Categories = ({ handler }) => {
+const Categories = ({ data, handler }) => {
+  const categoryArray = Array.from(new Set(data.map(el => el.category)));
   return <div className="btn-container">
     <button className="filter-btn" onClick={handler}>all</button>
-    <button className="filter-btn" onClick={handler}>breakfast</button>
-    <button className="filter-btn" onClick={handler}>lunch</button>
-    <button className="filter-btn" onClick={handler}>shakes</button>
+    {categoryArray.map((el, i) => <button className="filter-btn" onClick={handler} key={i}>{el}</button>)}
   </div>;
 };
 
